@@ -27,4 +27,4 @@ steps:
   displayName: 'Push to Artifacts Feed'
   inputs:
     command: push
-    publishVstsFeed: 'StringExtensionsFeed'
+    publishVstsFeed: 'StringExtensionsLib/StringExtensionsFeed'
