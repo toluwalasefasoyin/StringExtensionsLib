@@ -1,0 +1,30 @@
+trigger:
+- main
+
+pool:
+  name: MyLocalAgent
+
+steps:
+- task: DotNetCoreCLI@2
+  displayName: 'Restore'
+  inputs:
+    command: restore
+    projects: '**/*.csproj'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Build'
+  inputs:
+    command: build
+    projects: '**/*.csproj'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Pack NuGet'
+  inputs:
+    command: pack
+    projects: '**/*.csproj'
+
+- task: NuGetCommand@2
+  displayName: 'Push to Artifacts Feed'
+  inputs:
+    command: push
+    publishVstsFeed: 'StringExtensionsFeed'
